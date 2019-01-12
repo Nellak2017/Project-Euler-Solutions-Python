@@ -1,11 +1,12 @@
 #This file contains all of the library functions used in my project euler solutions
 #Keep this file in Alphabetical Order
 #Contains:
-#fact,fib,is_palindrome,isprime,maxPF
+#fact,fib,is_palindrome,isprime,maxPF,nth_prime
 
 import math,random
 
 # F
+
 def fact(n):
     # Returns the factorial of n, where factorial is n*(n-1)*(n-2)...*(1)
     if n >= 0:
@@ -23,6 +24,7 @@ def fib(n):
         a, b = b, a + b
     return a
 # I
+
 def is_palindrome(s):
     # Returns True if a string is a palindrome, False otherwise. 
     # A Palindrome is a string that is the same forwards and backwards.
@@ -59,6 +61,7 @@ def isprime(n, precision=7):
 
     return True
 # M
+
 def maxPF(n):
     # Returns the max prime factor of a number
     maxPrime = -1
@@ -72,4 +75,26 @@ def maxPF(n):
     if n > 2:
         maxPrime = n    
     return int(maxPrime)    
-    
+# N
+
+def nth_prime(n):
+    prime_list = [2]
+    num = 3
+    while len(prime_list) < n:
+        # check if num is divisible by any prime before it
+        for p in prime_list:
+            # if there is no remainder dividing the number
+            # then the number is not a prime
+            if num % p == 0:
+                # break to stop testing more numbers, we know it's not a prime
+                break
+        else:
+            prime_list.append(num)
+        # don't check even numbers
+        num += 2
+    # return the last prime number generated
+    return prime_list[-1]
+
+
+
+
