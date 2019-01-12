@@ -12,6 +12,12 @@ def fib(n):
         a, b = b, a + b
     return a
 
+def is_palindrome(s):
+    # Returns True if a string is a palindrome, False otherwise. 
+    # A Palindrome is a string that is the same forwards and backwards.
+    digits = list(str(s))
+    return digits[::-1] == digits[:]
+
 def maxPF(n):
     # Returns the max prime factor of a number
     maxPrime = -1
