@@ -1,9 +1,30 @@
 #This file contains all of the library functions used in my project euler solutions
 #Keep this file in Alphabetical Order
 #Contains:
-#fact,fib,is_palindrome,isprime,maxPF,nth_prime
+#esieve,fact,fib,is_palindrome,isprime,maxPF,nth_prime,pf,tri
 
 import math,random
+
+# E
+
+def esieve(n):
+    # The Sieve of Eratosthenes, O(n) space , O(log log n) time
+    # Generates primes up to a limit
+    is_prime = [True]*n
+    is_prime[0] = False
+    is_prime[1] = False
+    is_prime[2] = True
+    # even numbers except 2 have been eliminated
+    for i in range(3, int(n**0.5+1), 2):
+        index = i*2
+        while index < n:
+            is_prime[index] = False
+            index = index+i
+    prime = [2]
+    for i in range(3, n, 2):
+        if is_prime[i]:
+            prime.append(i)
+    return prime
 
 # F
 
@@ -23,6 +44,7 @@ def fib(n):
     for x in range(0,n):
         a, b = b, a + b
     return a
+
 # I
 
 def is_palindrome(s):
@@ -60,6 +82,7 @@ def isprime(n, precision=7):
         else: return False
 
     return True
+
 # M
 
 def maxPF(n):
@@ -75,6 +98,7 @@ def maxPF(n):
     if n > 2:
         maxPrime = n    
     return int(maxPrime)    
+
 # N
 
 def nth_prime(n):
@@ -94,6 +118,7 @@ def nth_prime(n):
         num += 2
     # return the last prime number generated
     return prime_list[-1]
+
 # P
 
 def pf(n): 
@@ -109,6 +134,15 @@ def pf(n):
     if n > 1:
         factors.append(n)
     return factors 
+
+# T
+
+def tri(n):
+    # Triangle numbers, O(1) time , O(1) space
+    # Returns the nth triangle number
+    return int(((n*(n+1))/2))
+
+
     
 
 
