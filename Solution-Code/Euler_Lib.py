@@ -1,9 +1,17 @@
-#This file contains all of the library functions used in my project euler solutions
-#Keep this file in Alphabetical Order
-#Contains:
-#esieve,fact,fib,is_palindrome,isprime,maxPF,nth_prime,pf,tri
+# This file contains all of the library functions used in my project euler solutions
+# Keep this file in Alphabetical Order
+# Contains:
+# digit_sum,esieve,fact,fib,is_palindrome,isprime,maxPF,nth_prime,pf,tri
 
 import math,random
+
+# D
+
+def digit_sum(n):
+    result = 0 
+    for x in str(n):
+        result += int(x)
+    return result
 
 # E
 
