@@ -94,7 +94,22 @@ def nth_prime(n):
         num += 2
     # return the last prime number generated
     return prime_list[-1]
+# P
 
+def pf(n): 
+    # Returns the prime factor list of a number
+    i = 2
+    factors = []
+    while i * i <= n:
+        if n % i:
+            i += 1
+        else:
+            n //= i
+            factors.append(i)
+    if n > 1:
+        factors.append(n)
+    return factors 
+    
 
 
 
