@@ -49,11 +49,15 @@ def fact(n):
 def fib(n):
     # Returns fibonnacci(n), where fib(n) = fib(n-1)+fib(n-2)
     a,b = 0,1
-    for x in range(0,n):
+    for _ in range(0,n):
         a, b = b, a + b
     return a
 
 # I
+
+def is_amicable(n):
+    # Returns true if a number is amicable
+    return sum(proper_divisors(sum(proper_divisors(n)))) == n and sum(proper_divisors(n)) != n
 
 def is_palindrome(s):
     # Returns True if a string is a palindrome, False otherwise. 
@@ -61,35 +65,38 @@ def is_palindrome(s):
     digits = list(str(s))
     return digits[::-1] == digits[:]
 
-def isprime(n, precision=7):
-    _smallprimeset = 1000000
-    # http://en.wikipedia.org/wiki/Miller-Rabin_primality_test
-    # Algorithm_and_running_time
-    if n < 1:
-        raise ValueError("Out of bounds, first argument must be > 0")
-    elif n <= 3:
-        return n >= 2
-    elif n % 2 == 0:
+def isprime(n, k=40):
+
+    # Implementation uses the Miller-Rabin Primality Test
+    # The optimal number of rounds for this test is 40
+    # See http://stackoverflow.com/questions/6325576/how-many-iterations-of-rabin-miller-should-i-use-for-cryptographic-safe-primes
+    # for justification
+    # Contribution goes to Ayrx / miller_rabin.py
+
+    if n == 2 or n == 3:
+        return True
+
+    if n % 2 == 0:
         return False
-        d = n - 1
-    s = 0
-    while d % 2 == 0:
-        d //= 2
-        s += 1
 
-    for repeat in range(precision):
-        a = random.randrange(2, n - 2)
-        x = pow(a, d, n)
-
-        if x == 1 or x == n - 1: continue
-
-        for r in range(s - 1):
+    r, s = 0, n - 1
+    while s % 2 == 0:
+        r += 1
+        s //= 2
+    for _ in range(k):
+        a = random.randrange(2, n - 1)
+        x = pow(a, s, n)
+        if x == 1 or x == n - 1:
+            continue
+        for _ in range(r - 1):
             x = pow(x, 2, n)
-            if x == 1: return False
-            if x == n - 1: break
-        else: return False
-
+            if x == n - 1:
+                break
+        else:
+            return False
     return True
+
+print(isprime(-10))
 
 # M
 
@@ -128,6 +135,9 @@ def nth_prime(n):
     return prime_list[-1]
 
 # P
+
+def proper_divisors(n):
+    return [x for x in range(1,((n+1)//2)+1) if n % x == 0]
 
 def pf(n): 
     # Returns the prime factor list of a number

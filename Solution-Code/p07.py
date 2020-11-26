@@ -1,7 +1,7 @@
 #Project Euler problem 7
 #10 001st prime
 import math
-from Solution-Code import Euler_Lib as E
+import Euler_Lib as E
 
 print(E.nth_prime(10001))
 '''

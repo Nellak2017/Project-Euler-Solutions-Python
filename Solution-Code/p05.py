@@ -1,7 +1,7 @@
 #Project Euler Problem 5
 #Smallest positive number that n%2 to n%20 == 0
 import math
-from Solution-Code import Euler_Lib as E
+import Euler_Lib as E
 
 def primesProduct(n):
   product = 1

@@ -1,6 +1,6 @@
 # Project Euler Problem 12
 # first triangle num to have over 500 divisors, where a triangle num, T(n) = (n*(n+1))/2
-from Solution-Code import Euler_Lib as E
+import Euler_Lib as E
 
 def test(n):
   # We use this function to test each n if it has atleast 500 factors in the compute function
