@@ -13,6 +13,34 @@ def digit_sum(n):
         result += int(x)
     return result
 
+
+# This function takes numerator n, denominator d and does up to
+# p cyles of long division. It stops when either it finds a repeated
+# remainder or it has generated a decimal fraction that is has the
+# same number of digits as the denominator (The longest possible 
+# repeating sequence has length [denominator - 1]).
+
+
+def divide(n, d, p):
+    i = 0  # Counts the cycles
+    remainders = set()  # Empty set of remainders
+
+    while i < p:
+        if n < d:
+            n = n * 10  # If the numerator < denominator, multiply by 10
+
+        n = n % d  # sets the remainder as the new numerator
+
+        if n in remainders:  # If this is repeated remainder, we have reached the end of a repeating cycle
+            return (d, i)  # Returns the denominator and the length of the repeating decimal
+
+        else:
+            remainders.add(n)  # Adds the new remainder to set of remainders
+
+        i = i + 1  # Increments the counter (number of digits found)
+        
+    return remainders
+
 # E
 
 def esieve(n):
@@ -96,8 +124,6 @@ def isprime(n, k=40):
             return False
     return True
 
-print(isprime(-10))
-
 # M
 
 def maxPF(n):
@@ -136,6 +162,23 @@ def nth_prime(n):
 
 # P
 
+def partition(list,target):
+    # This gives the partitions of a number, with the partitions supplied
+    # Ex: given british currency, partition 200Pence ==> 73682
+    if list is not None:
+        ways = [1] + [0] * target
+        for p in list:
+            for j in range(p, target + 1):
+                ways[j] += ways[j - p]
+        return ways[-1]
+    elif list is None:
+        list = list(range(1,target))
+        ways = [1] + [0] * target
+        for p in list:
+            for j in range(p, target + 1):
+                ways[j] += ways[j - p]
+        return ways[-1]
+
 def proper_divisors(n):
     return [x for x in range(1,((n+1)//2)+1) if n % x == 0]
 
@@ -159,9 +202,3 @@ def tri(n):
     # Triangle numbers, O(1) time , O(1) space
     # Returns the nth triangle number
     return int(((n*(n+1))/2))
-
-
-    
-
-
-
