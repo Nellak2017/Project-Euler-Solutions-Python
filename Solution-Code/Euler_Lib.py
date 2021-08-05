@@ -13,6 +13,16 @@ def digit_sum(n):
         result += int(x)
     return result
 
+# Returns a generator of all the factors of a number
+def divisors(n):
+    large_divisors = []
+    for i in range(1,int(math.sqrt(n)+1)):
+        if n % i == 0:
+            yield i
+            if i*i != n:
+                large_divisors.append(n/i)
+    for divisor in reversed(large_divisors):
+        yield int(divisor)
 
 # This function takes numerator n, denominator d and does up to
 # p cyles of long division. It stops when either it finds a repeated
