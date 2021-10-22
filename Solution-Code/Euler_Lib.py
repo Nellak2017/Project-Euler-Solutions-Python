@@ -206,6 +206,18 @@ def pf(n):
         factors.append(n)
     return factors 
 
+# S
+
+def sieve(limit):
+    # Generates primes up to a limit, as a generator
+    a = [True] * limit
+    a[0] = a[1] = False
+    for (i,isprime) in enumerate(a):
+        if isprime:
+            yield i
+            for n in range(i*i, limit, i):
+                a[n] = False
+
 # T
 
 def tri(n):
